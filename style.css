@@ -1,0 +1,24 @@
+.main-header {
+  background: linear-gradient(to right, #343333, #484848, #282828);
+  padding: 0 40px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.logo {
+    width: 287px;
+    height: 49px;
+    top: 12px;
+}
+
+.link {
+font-family: 'Roboto';
+}
