@@ -1,6 +1,9 @@
 :root {
   --background-header-footer: linear-gradient(to right, #343333, #484848, #282828);
   --font: 'Roboto', sans-serif;
+  --list-item-font: 400 20px/19px 'Roboto', sans-serif;
+  --h3-font: 400 20px/18px 'Roboto', sans-serif;
+  --ul-letter-spacing: 3px;
 }
 
 html {
@@ -155,49 +158,24 @@ html {
   display: none;
 }
 
-.footer-main {
-  background: var(--background-header-footer);
-  width: 100%;
-  height: 375px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-.footer-container {
-  display: flex;
-  margin: 0 auto;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-width: 1250px;
-  width: 100%;
-  height: 215px;
-  gap: 85px;
-}
-
 .logo-container {
   width:  270px;
-  padding: 16px 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 23px;
 
 }
 
 .logo-container p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  font-size: 14px;
+  font: 400 14px/22px 'Roboto', sans-serif;
   color: #FFFFFF99;
-;
+  padding-right: 15px;
 }
 
 .social-icons {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
+  gap: 12px;
+  align-items: left;
 }
 
 .social-icons a {
@@ -211,6 +189,7 @@ html {
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: #000000;
+   
 }
 
 .social-icons a svg {
@@ -225,27 +204,80 @@ html {
   color: #FFFFFF;
 }
 
-.footer-column {
+.footer-main {
+  background: var(--background-header-footer);
+  width: 100%;
+  padding: 85px 0 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.footer-column h4 {
-  color: white;
-  font-size: 16px;
-  margin: 0;
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1250px;
+  width: 100%;
+  height: 215px;
+  gap: 85px;
+  margin-bottom: 25px;
+}
+
+.footer-column {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 85px;
+  flex: 1; 
 }
 
 .footer-column a {
-  color: #FFFFFF99;
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s ease;
+  color: #FFFFFF99;
 }
 
 .footer-column a:hover {
-  color: #FFFFFF;
+  color: #F17900;
+}
+
+.column {
+  min-width: 130px;
+  
+}
+
+.footer-column h3 {
+  font: var(--h3-font);
+  color: #E0A449;
+  margin-bottom: 26px;
+  letter-spacing: var(--ul-letter-spacing);
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  font: var(--list-item-font);
+  color: #FFFFFF99;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  
+}
+
+.copyright {
+  width: 100%;
+  max-width: 1250px;
+  text-align: left;
+}
+
+.copyright p {
+  font: 400 16px 'Roboto' ,sans-serif;
+  color: #FFFFFF99;
+  margin: 0;
 }
 
 
