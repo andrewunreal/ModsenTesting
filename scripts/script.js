@@ -80,7 +80,7 @@ function loadRandomImages() {
 
       data.forEach(photo => {
         const img = document.createElement("img");
-        img.src = photo.urls.small;
+        img.src = photo.urls.regular;
         img.alt = photo.alt_description || "Random Unsplash Image";
         img.onload = () => {
           loadedCount++;
@@ -107,4 +107,47 @@ button.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
   loadRandomImages();
+});
+
+
+let currentImageIndex = 0;
+let currentImageList = [];
+
+const modalOverlay = document.getElementById("modal-overlay");
+const modalImage = document.querySelector(".modal-image");
+const closeBtn = document.querySelector(".close-btn");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+gallery.addEventListener("click", function (e) {
+  if (e.target.tagName === "IMG") {
+    const images = Array.from(gallery.querySelectorAll("img"));
+    currentImageList = images.map(img => img.src);
+    currentImageIndex = images.indexOf(e.target);
+    openModal(currentImageList[currentImageIndex]);
+  }
+});
+
+function openModal(src) {
+  modalImage.src = src;
+  modalOverlay.style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+modalOverlay.addEventListener("click", function (e) {
+  if (e.target === modalOverlay || e.target === closeBtn) {
+    modalOverlay.style.display = "none";
+    document.body.style.overflow = "";
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  currentImageIndex = (currentImageIndex + 1) % currentImageList.length;
+  modalImage.src = currentImageList[currentImageIndex];
+});
+
+prevBtn.addEventListener("click", () => {
+  currentImageIndex =
+    (currentImageIndex - 1 + currentImageList.length) % currentImageList.length;
+  modalImage.src = currentImageList[currentImageIndex];
 });
