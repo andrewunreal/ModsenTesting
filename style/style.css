@@ -151,13 +151,10 @@ html {
 }
 
 .validation-message {
-  align-self: flex-start;
-  text-align: left;
+  margin: 10px auto 0 auto;
   font: 14px 'Roboto', sans-serif;
   color: #FF0000;
-  margin-top: 10px;
-  margin-left: 10px;
-  max-width: 765px;
+  max-width: 90%;
   display: none;
 }
 
@@ -204,8 +201,12 @@ html {
 
 .social-icons a:hover {
   background-color: #E0A449;
-  color: #FFFFFF;
 }
+
+.social-icons a:hover svg {
+  fill: #FFFFFF;
+}
+
 
 .footer-main {
   background: var(--background-header-footer);
@@ -573,8 +574,17 @@ html {
 }
 
 @media (max-width: 768px) {
-  .logo {
-    max-width: 130px;
+  .validation-message {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 12px;
+  }
+  
+  .logo img{
+    max-width: 200px;
     height: auto;
   }
 
@@ -678,6 +688,10 @@ html {
     gap: 12px;
   }
 
+  .logo-container img{
+    max-width: 200px;
+  }
+
   .logo-container p {
     font-size: 13px;
     line-height: 20px;
@@ -735,6 +749,15 @@ html {
 }
 
 @media (max-width: 576px) {
+  .validation-message {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 13px;
+  }
+  
   .header {
     height: 80px;
     padding: 0 10px;
@@ -742,15 +765,18 @@ html {
   }
 
   .logo {
-    max-width: 100px;
+    max-width: 150px;
     height: auto;
-    margin-top: 0;
   }
 
   .logo img {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  .logo-container img{
+    max-width: 150px;
   }
 
   .container {
