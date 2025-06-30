@@ -151,11 +151,23 @@ html {
 }
 
 .validation-message {
-  margin: 10px auto 0 auto;
+  visibility: hidden;
+  min-height: 20px;
   font: 14px 'Roboto', sans-serif;
   color: #FF0000;
   max-width: 90%;
+  margin: 10px auto 0 auto;
+}
+.validation-message.active {
+  visibility: visible;
+}
+
+.load-error {
   display: none;
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  margin-top: 20px;
 }
 
 .logo-container {

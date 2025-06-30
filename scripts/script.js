@@ -3,6 +3,7 @@ const button = document.querySelector('.searchBar button');
 const gallery = document.querySelector('.gallery-grid');
 const loader = document.getElementById("loader");
 const validationMessage = document.getElementById("validation-message");
+const loadError = document.getElementById("load-error");
 const accessKey = "nUEQriwypR86MLwDyS8Ef6beE0voT_1BjHFiJWKGBdU";
 
 function showLoader() {
@@ -17,33 +18,40 @@ function hideLoader() {
 
 function validateInput(query) {
   const allowedCharsRegex = /^[a-zA-Z0-9 !$&*\-=\^`|~#%'\/?_{}+]+$/;
+
   if (!query) {
-    validationMessage.textContent = "Введите поисковый запрос (минимум 3 символа, максимум 64).";
-    validationMessage.style.display = "block";
+    validationMessage.textContent = "Please enter a search query (min 3, max 64 characters).";
+    validationMessage.classList.add("active");
     return false;
   }
+
   if (query.length < 3 || query.length > 64) {
-    validationMessage.textContent = "Длина запроса должна быть от 3 до 64 символов.";
-    validationMessage.style.display = "block";
+    validationMessage.textContent = "Query length must be between 3 and 64 characters.";
+    validationMessage.classList.add("active");
     return false;
   }
+
   if (!allowedCharsRegex.test(query)) {
-    validationMessage.textContent = "Допустимы только буквы, цифры и символы: ! $ & * - = ^ ` | ~ # % ' + / ? _ { }";
-    validationMessage.style.display = "block";
+    validationMessage.textContent = "Only letters, numbers, and symbols ! $ & * - = ^ ` | ~ # % ' + / ? _ { } are allowed.";
+    validationMessage.classList.add("active");
     return false;
   }
-  validationMessage.style.display = "none";
+
+  validationMessage.classList.remove("active");
   return true;
 }
 
 function loadImages(query) {
   showLoader();
+  loadError.style.display = "none";
+
   fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12&client_id=${accessKey}`)
     .then(response => response.json())
     .then(data => {
       gallery.innerHTML = "";
+
       if (data.results.length === 0) {
-        gallery.innerHTML = "<p>Ничего не найдено.</p>";
+        gallery.innerHTML = "<p>No results found.</p>";
         hideLoader();
         return;
       }
@@ -63,13 +71,15 @@ function loadImages(query) {
       });
     })
     .catch(error => {
-      console.error("Ошибка при загрузке данных: ", error);
+      console.error("Error loading images:", error);
+      loadError.style.display = "block";
       hideLoader();
     });
 }
 
 function loadRandomImages() {
   showLoader();
+  loadError.style.display = "none";
 
   fetch(`https://api.unsplash.com/photos/random?count=12&client_id=${accessKey}`)
     .then(response => response.json())
@@ -77,7 +87,6 @@ function loadRandomImages() {
       gallery.innerHTML = "";
 
       let loadedCount = 0;
-
       data.forEach(photo => {
         const img = document.createElement("img");
         img.src = photo.urls.regular;
@@ -92,23 +101,21 @@ function loadRandomImages() {
       });
     })
     .catch(error => {
-      console.error("Ошибка при загрузке случайных изображений: ", error);
+      console.error("Error loading random images:", error);
+      loadError.style.display = "block";
       hideLoader();
     });
 }
 
 button.addEventListener("click", () => {
   const query = input.value.trim();
-  if (!validateInput(query)) {
-    return;
-  }
+  if (!validateInput(query)) return;
   loadImages(query);
 });
 
 window.addEventListener("DOMContentLoaded", () => {
   loadRandomImages();
 });
-
 
 let currentImageIndex = 0;
 let currentImageList = [];
@@ -147,7 +154,6 @@ nextBtn.addEventListener("click", () => {
 });
 
 prevBtn.addEventListener("click", () => {
-  currentImageIndex =
-    (currentImageIndex - 1 + currentImageList.length) % currentImageList.length;
+  currentImageIndex = (currentImageIndex - 1 + currentImageList.length) % currentImageList.length;
   modalImage.src = currentImageList[currentImageIndex];
 });
