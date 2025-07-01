@@ -1,1 +1,1 @@
-https://68626e0997cef8591d3a8eab--imagegalerry.netlify.app
+https://6863807ed31db9f5a4e604b6--mygalle.netlify.app
