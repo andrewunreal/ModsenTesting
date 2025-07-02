@@ -1,1 +1,1 @@
-https://6863807ed31db9f5a4e604b6--mygalle.netlify.app
+https://endgallery.netlify.app/
