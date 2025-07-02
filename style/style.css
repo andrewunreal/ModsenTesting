@@ -52,6 +52,12 @@ html {
   margin-top: 20px;
 }
 
+.navLink:hover {
+  color: #F17900;
+  transition: color 0.3s ease;
+}
+
+
 .searchContainer {
   display: flex;
   flex-direction: column;
@@ -163,12 +169,18 @@ html {
 }
 
 .load-error {
-  display: none;
-  text-align: center;
-  color: red;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FF0000;
   font-size: 16px;
-  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: none;
+  z-index: 10;
 }
+
 
 .logo-container {
   width:  270px;
